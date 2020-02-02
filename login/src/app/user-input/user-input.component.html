@@ -15,24 +15,26 @@
     </div>
 
     <!-- Login Form -->
-    <form #loginUser="ngForm">
-        {{login.valid}} {{login.required}} {{login.untouched}}
+    <form #loginUser="ngForm" (ngSubmit)="onSubmit()">
+      
+      <!--UserName-->
       <div class="form-group">
          <input type="text" id="login" #login="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [class.is-invalid]="login.invalid && login.touched" class="fadeIn second is-invalid" name="login" placeholder="Email-id"  required minlength="1"   [(ngModel)]="userModel.email">
-          
-        </div>
-        <small [class.d-none]="login.valid||login.untouched"> sorry email id not entered or wrong format</small>
+      </div>
+        <small class="text-danger" [class.d-none]="login.valid||login.untouched"> sorry email id not entered or wrong format</small>
+
+        <!--PassWord-->
       <div class="form-group"> 
         <input type="password" id="password" #password="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" class="fadeIn third" name="password" placeholder="Password"  required minlength="1"  [(ngModel)]="userModel.password">
       </div>
-     <small [class.d-none]="password.valid||password.untouched">sorry  the password is incorrect format or is not entered</small>
+        <small class="text-danger" [class.d-none]="password.valid||password.untouched">sorry  the password is incorrect format or is not entered</small>
+      
+      <!--Submit-->
       <div class="form-group">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-    </div>
-      
-      
-     
-    </form>
+        <input  [disabled]="loginUser.form.invalid" type="submit" class="fadeIn fourth" value="Log In">
 
+      </div>
+    </form>
+    
   </div>
 </div>
