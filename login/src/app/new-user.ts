@@ -3,7 +3,7 @@ export class NewUser {
         public userName:string,
         public role:string,
         public email:string,
-        public password:string,
+        public Password:string,
         public cPassword:string
     ){}
 }

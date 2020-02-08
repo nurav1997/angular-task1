@@ -17,13 +17,14 @@ export class SignupComponent implements OnInit {
 
   onSubmit(){
      
-    if (this.userSignup.email === 'test@domain.com' && this.userSignup.password === 'Password123!'){
-       this.router.navigate(["/profile"]);  }
-       else{
-         alert("SORRY BUT SOME FIELDS ARE INVALID PLEASE CORRECT THEM");
-         this.userSignup.email="";
-         this.userSignup.password="";
-       }
+    if (this.userSignup.Password == this.userSignup.cPassword)
+    { 
+      this.router.navigate(["/userinput"]); 
+    }else{      
+      alert("SORRY BUT THE PASSWORD AND CONFIRM-PASSWORD DO NOT MATCH :(")
+
+     }
+      
    } 
 
 }
