@@ -19,37 +19,43 @@
       
       <!--Name-->
       <div class="form-group">
-        <small class="text-danger" [class.d-none]="userName.invalid && userName.focus"><img src="http://www.clker.com/cliparts/G/F/D/c/j/r/correct-md.png" alt="correct" height="30px" width="30px"></small>
-        <small class="text-danger" [class.d-none]="userName.valid && userName.focus"><img src="http://www.clker.com/cliparts/m/Z/5/E/R/w/incorrect-md.png" alt="correct" height="30px" width="30px"></small>
-         <input type="text" id="userName" #userName="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [class.is-invalid]="userName.invalid && userName.touched" class="fadeIn second is-invalid" name="userName" placeholder="Name"  required minlength="1"   [(ngModel)]="userSignup.userName">
+        <small class="text-danger" [class.d-none]="userName.invalid || userName.untouched"><img src="http://www.clker.com/cliparts/G/F/D/c/j/r/correct-md.png" alt="correct" height="30px" width="30px"></small>
+        <small class="text-danger" [class.d-none]="userName.valid  ||  userName.untouched"><img src="http://www.clker.com/cliparts/m/Z/5/E/R/w/incorrect-md.png" alt="correct" height="30px" width="30px"></small>
+         <input type="text" id="userName" #userName="ngModel" pattern="^[a-zA-Z ]+$" [class.is-invalid]="userName.invalid && userName.touched" class="fadeIn second is-invalid" name="userName" placeholder="Name"  required minlength="1"   [(ngModel)]="userSignup.userName">
       </div>
         
         <!--role-->
       <div class="form-group"> 
-        <select class="fadeIn third is-invalid" [class.is-invalid]="role.invalid && role.touched && role.select" id="role" name="role" #role="ngModel"[(ngModel)]="userSignup.role" >
-          <option>Operations Manager</option>
-          <option>Loan Processor</option>
-          <option>Loan Officer</option>
-          <option>Underwriter</option>
-          <option>CTO</option>
+        <small class="text-danger" [class.d-none]="role.invalid  ||  role.untouched"><img src="http://www.clker.com/cliparts/G/F/D/c/j/r/correct-md.png" alt="correct" height="30px" width="30px"></small>
+        <small class="text-danger" [class.d-none]="role.valid  ||  role.untouched"><img src="http://www.clker.com/cliparts/m/Z/5/E/R/w/incorrect-md.png" alt="correct" height="30px" width="30px"></small>
+        <select class="fadeIn third is-invalid" placeholder="Role" required [class.is-invalid]="role.invalid && role.touched && role.selected" id="role" name="role" #role="ngModel"[(ngModel)]="userSignup.role" >
+          <option value="Operations Manager">Operations Manager</option>
+          <option value="Loan Processor">Loan Processor</option>
+          <option value="Loan Officer">Loan Officer</option>
+          <option value="Underwriter">Underwriter</option>
+          <option value="CTO">CTO</option>
         </select>
       </div>
-        <small class="text-danger" [class.d-none]="role.unselect">SORRY PLEASE SELECT ONE ROLE :)</small>
-      
+         
         <!--email-->
         <div class="form-group">
+          <small class="text-danger" [class.d-none]="email.invalid  ||  email.untouched"><img src="http://www.clker.com/cliparts/G/F/D/c/j/r/correct-md.png" alt="correct" height="30px" width="30px"></small>
+        <small class="text-danger" [class.d-none]="email.valid  ||  email.untouched"><img src="http://www.clker.com/cliparts/m/Z/5/E/R/w/incorrect-md.png" alt="correct" height="30px" width="30px"></small>
             <input type="text" id="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [class.is-invalid]="email.invalid && email.touched" class="fadeIn fourth is-invalid" name="email" placeholder="email"  required minlength="1"   [(ngModel)]="userSignup.email">
          </div>
-         <small class="text-danger" [class.d-none]="email.valid||email.untouched">sorry  the password is incorrect format or is not entered</small>
-
+ 
        <div class="form-group">
+        <small class="text-danger" [class.d-none]="Password.invalid  ||  Password.untouched"><img src="http://www.clker.com/cliparts/G/F/D/c/j/r/correct-md.png" alt="correct" height="30px" width="30px"></small>
+        <small class="text-danger" [class.d-none]="Password.valid  ||  Password.untouched"><img src="http://www.clker.com/cliparts/m/Z/5/E/R/w/incorrect-md.png" alt="correct" height="30px" width="30px"></small>
             <input type="password" id="Password" #Password="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" [class.is-invalid]="Password.invalid && Password.touched" class="fadeIn fifth is-invalid" name="Passowrd" placeholder="Password"  required minlength="1"   [(ngModel)]="userSignup.Password">
          </div>
-         <small class="text-danger" [class.d-none]="Password.valid||Password.untouched">sorry  the password is incorrect format or is not entered</small>
-
+ 
          <div class="form-group">
-            <input type="password" id="cPassword" #cPassword="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [class.is-invalid]="cPassword.invalid && cPassword.touched" class="fadeIn sixth is-invalid" name="cPassword" placeholder="cPassowrd"  required minlength="1"   [(ngModel)]="userSignup.cPassword">
+          <small class="text-danger" [class.d-none]="cPassword.invalid  ||  cPassword.untouched"><img src="http://www.clker.com/cliparts/G/F/D/c/j/r/correct-md.png" alt="correct" height="30px" width="30px"></small>
+          <small class="text-danger" [class.d-none]="cPassword.valid  ||  cPassword.untouched"><img src="http://www.clker.com/cliparts/m/Z/5/E/R/w/incorrect-md.png" alt="correct" height="30px" width="30px"></small>
+            <input type="password" id="cPassword" #cPassword="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" [class.is-invalid]="cPassword.invalid && cPassword.touched" class="fadeIn sixth is-invalid" name="cPassword" placeholder="cPassowrd"  required minlength="1"   [(ngModel)]="userSignup.cPassword">
          </div>
+         <small class="text-danger"  [class.d-none]="cPassword.untouched && Password.untouched && password.value!=cPassowrd.value" >SORRY PASSWORDS DO NOT MATCH :(</small>
         <!--Submit-->
       <div class="form-group">
         <input type="submit" [disabled]="signupUser.form.invalid"  class="fadeIn seventh" value="Log In">
