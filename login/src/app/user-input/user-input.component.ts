@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../user'
 import {Router} from "@angular/router"
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../_services/api.service';
 
 @Component({
   selector: 'app-user-input',
@@ -11,38 +11,21 @@ import { HttpClient } from '@angular/common/http';
 export class UserInputComponent implements OnInit {
   userModel=new User('','');
 
-  //constructor(private router: Router) { }
-  constructor(private http: HttpClient){};
+  constructor(private router: Router,private _ApiService : ApiService){};
   ngOnInit() {
   }
 
-  // onSubmit(){
-  //  if (this.userModel.email === 'test@domain.com' && this.userModel.password === 'Password123!'){
-  //     this.router.navigate(["/profile"]);  }
-  //     else{
-  //       alert("Invalid Username or Password");
-  //       this.userModel.email="";
-  //       this.userModel.password="";
-  //     }
-  // }
-
   onSubmit()
   {
-    this.http.post("https://nalo-test.herokuapp.com/v1/login" ,{
-      "email":this.userModel.email,
-      "password":this.userModel.password
-
-    })
-    .subscribe
-    (
+      this._ApiService.login(this.userModel).subscribe(
       data =>{
-        alert("POST REQUEST SENT SUCCESSFULLY");
-        console.log(data);
+        alert("Login Successfully");
+        this.router.navigate(["/profile"]);
       },
       error =>{
-        alert("ERROR HAS OCCURED");
-        console.log(error);
+        alert(error.error);
+        this.userModel.email="";
+        this.userModel.password="";
       }
-      
     )
-}}
+}  }

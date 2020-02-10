@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { UserInputComponent } from './user-input/user-input.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
+import {ApiService} from './_services/api.service';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,8 @@ import { SignupComponent } from './signup/signup.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-    
-
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
