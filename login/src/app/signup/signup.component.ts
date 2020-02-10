@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
       this._ApiService.register(this.userSignup).subscribe(
         data =>{
           alert("Account Created Successfully. Please Check mail for activate your account thank you!");
+          alert("You are being redirected to login page...................");
           this.router.navigate(["/userinput"]);
         },
         error =>{
