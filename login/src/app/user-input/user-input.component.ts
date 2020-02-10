@@ -24,6 +24,9 @@ export class UserInputComponent implements OnInit {
       },
       error =>{
         alert(error.error);
+        if(error.error=="User does not exist."){
+          this.router.navigate(["/signup"]);
+        }
         this.userModel.email="";
         this.userModel.password="";
       }
