@@ -30,6 +30,7 @@
         <small class="text-danger" [class.d-none]="role.invalid  ||  role.untouched"><img src="https://media1.tenor.com/images/5ca3f2f8ebe9fbd08d0f9b7afb99b408/tenor.gif?itemid=14249951" alt="correct" height=" 35px" width=" 35px"></small>
         <small class="text-danger" [class.d-none]="role.valid  ||  role.untouched"><img src="https://finaxs.com/w.gif" alt="correct" height=" 35px" width=" 35px"></small>
         <select class="fadeIn third is-invalid" placeholder="Role" required [class.is-invalid]="role.invalid && role.touched && role.selected" id="role" name="role" #role="ngModel"[(ngModel)]="userSignup.role" >
+          <option value="" disabled selected>Role</option>
           <option value="Operations Manager">Operations Manager</option>
           <option value="Loan Processor">Loan Processor</option>
           <option value="Loan Officer">Loan Officer</option>
