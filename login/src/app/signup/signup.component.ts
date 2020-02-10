@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NewUser} from '../new-user'
 import {Router} from "@angular/router"
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../_services/api.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,53 +11,32 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent implements OnInit {
    userSignup=new NewUser('','','','','');
    
-  //constructor(private router: Router) { }
-  constructor(private http: HttpClient){};
+  constructor(private router: Router,private _ApiService : ApiService){};
 
   ngOnInit() {
   }
-
-  // onSubmit(){
-     
-  //   if (this.userSignup.Password == this.userSignup.cPassword)
-  //   { 
-  //     this.router.navigate(["/userinput"]); 
-  //   }else{      
-  //     alert("SORRY BUT THE PASSWORD AND CONFIRM-PASSWORD DO NOT MATCH :(")
-
-  //    }
-      
-  //  } 
-
    onSubmit()
   {
     if (this.userSignup.Password == this.userSignup.cPassword)
-    { 
-    this.http.post("https://nalo-test.herokuapp.com/v1/signup" ,
     {
-      "email":this.userSignup.email,
-      "password":this.userSignup.Password,
-      "name":this.userSignup.userName,
-      "role":this.userSignup.role
-    })
-
-    .subscribe
-    (
-      data =>{
-        alert("POST REQUEST SENT SUCCESSFULLY");
-        console.log(data);
-      },
-      error =>{
-        alert("ERROR HAS OCCURED");
-        error.log(error);
-      }
-      
-    )
+      this._ApiService.register(this.userSignup).subscribe(
+        data =>{
+          alert("Account Created Successfully. Please Check mail for activate your account thank you!");
+          this.router.navigate(["/userinput"]);
+        },
+        error =>{
+          alert(error.error);
+          this.userSignup.userName="";
+          this.userSignup.role="";
+          this.userSignup.email="";
+          this.userSignup.Password="";
+          this.userSignup.cPassword="";
+        }
+      ) 
   }
 else{ 
    alert("SORRY PASSWORD AND CONFIRM PASSWORD DO NOT MATCH");
  }
-
-  }
+}
 }
  
